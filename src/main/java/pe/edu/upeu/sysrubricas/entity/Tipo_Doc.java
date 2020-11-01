@@ -1,4 +1,4 @@
-package pe.edu.upeu.systemasgru.entity;
+package pe.edu.upeu.sysrubricas.entity;
 public class Tipo_Doc {
 	private int id_tipo_doc;
 	private String nombre;

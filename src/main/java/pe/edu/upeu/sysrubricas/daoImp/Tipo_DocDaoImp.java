@@ -1,10 +1,10 @@
-package pe.edu.upeu.systemasgru.daoImp;
+package pe.edu.upeu.sysrubricas.daoImp;
 
 import java.util.List;
 import java.util.Map;
 
-import pe.edu.upeu.systemasgru.dao.Tipo_DocDao;
-import pe.edu.upeu.systemasgru.entity.Tipo_Doc;
+import pe.edu.upeu.sysrubricas.dao.Tipo_DocDao;
+import pe.edu.upeu.sysrubricas.entity.Tipo_Doc;
 
 public class Tipo_DocDaoImp implements Tipo_DocDao {
 
