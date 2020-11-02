@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.Types;
+//import com.sun.xml.internal.ws.wsdl.writer.document.Types;
 
 import oracle.jdbc.OracleTypes;
 import pe.edu.upeu.sysrubricas.dao.CompetenciaDao;
