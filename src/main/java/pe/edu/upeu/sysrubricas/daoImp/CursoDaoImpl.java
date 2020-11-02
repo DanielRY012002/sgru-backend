@@ -1,54 +1,43 @@
-//Creado por: Debora Alejandro
-
 package pe.edu.upeu.sysrubricas.daoImp;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.SqlOutParameter;
-import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.Types;
-
-import oracle.jdbc.OracleTypes;
-import pe.edu.upeu.sysrubricas.dao.CompetenciaDao;
-import pe.edu.upeu.sysrubricas.entity.Competencia;
+import pe.edu.upeu.sysrubricas.dao.CursoDao;
+import pe.edu.upeu.sysrubricas.entity.Curso;
 
 @Repository
-
-public class CompetenciaDaoImpl implements CompetenciaDao{
-
+public class CursoDaoImpl implements CursoDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	private SimpleJdbcCall simpleJdbcCall;
 	
 	@Override
-	public int create(Competencia c) {
+	public int create(Curso c) {
 		// TODO Auto-generated method stub
-		return 	 jdbcTemplate.update("call D_CRUD_COMPETENCIAS.SPP_create_COMPETENCIAS(?)", c.getDescripcion());
+		return 	 jdbcTemplate.update("call D_CRUD_CURSO.SPP_INS_CURSO(?,?,?,?,?)", c.getNombre(), c.getCr(), c.getHt(), c.getHp(), c.getEstado());
 	}
 
 	@Override
-	public int update(Competencia c) {
+	public int update(Curso c) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call D_CRUD_COMPETENCIAS.SPP_update_COMPETENCIAS(?,?)", c.getId_competencias(), c.getDescripcion());
+		return jdbcTemplate.update("call D_CRUD_CURSO.SPP_UPD_CURSO(?,?,?,?,?,?)", c.getId_curso(), c.getNombre(), c.getCr(), c.getHt(), c.getHp(), c.getEstado());
 	}
 	@Override
 	//este metodo permite eliminar una competencia
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call d_crud_competencias.spp_delete_competenicas(?)", id);
+		return jdbcTemplate.update("call D_CRUD_CURSO.SPP_DEL_CURSO(?)", id);
 	}
 	@Override
 	public Map<String, Object> read(int id) {
-	//	System.out.println(id);
+		//System.out.println(id);
 		//simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 	    //.withCatalogName("d_crud_competencias") //nombre del paquete
 		//.withFunctionName("f_listar") //nombre de la funcion
@@ -57,8 +46,8 @@ public class CompetenciaDaoImpl implements CompetenciaDao{
 		//SqlParameterSource in = new MapSqlParameterSource().addValue("id_competencia", id);
 		
 		 simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-		.withCatalogName("d_crud_competencias") //nombre del paquete
-		.withFunctionName("fn_listar"); //nombre de la funcion
+		.withCatalogName("D_CRUD_CURSO") //nombre del paquete
+		.withFunctionName("SPF_BUSCAR_CURSO"); //nombre de la funcion
 		SqlParameterSource in = new MapSqlParameterSource().addValue("id", id);	
 		return simpleJdbcCall.execute(in);	
 	}
@@ -73,9 +62,8 @@ public class CompetenciaDaoImpl implements CompetenciaDao{
 //	return simpleJdbcCall.execute();
 		
 		 simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-					.withCatalogName("d_crud_competencias") //nombre del paquete
-					.withFunctionName("fn_listar_todo"); //nombre de la funcion
+					.withCatalogName("D_CRUD_CURSO") //nombre del paquete
+					.withFunctionName("SPF_LISTAR_CURSO"); //nombre de la funcion
 					return simpleJdbcCall.execute();
 	}
-
 }
