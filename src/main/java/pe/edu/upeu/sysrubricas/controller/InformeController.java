@@ -1,5 +1,3 @@
-//Creado por: Debora Alejandro
-
 package pe.edu.upeu.sysrubricas.controller;
 
 import java.util.Map;
@@ -14,42 +12,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.edu.upeu.sysrubricas.entity.Competencia;
-import pe.edu.upeu.sysrubricas.service.CompetenciaService;
+import pe.edu.upeu.sysrubricas.entity.Informe;
+import pe.edu.upeu.sysrubricas.service.InformeService;
 
 @RestController
-@RequestMapping("/competencia")
+@RequestMapping("/informe")
 
-public class CompetenciaController {
+public class InformeController {
 	@Autowired
-	private CompetenciaService competenciaservice;
+	private InformeService informeService;
 
-	@GetMapping("/lista")
-	public Map<String, Object> lista() {
-		return competenciaservice.readAll();
+	@GetMapping("/all")
+	public Map<String, Object> readAll() {
+		return informeService.readAll();
 	}
 
 	@GetMapping("/{id}")
 	public Map<String, Object> read(@PathVariable int id) {
-		return competenciaservice.read(id);
+		return informeService.read(id);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public int delete(@PathVariable int id) {
-		return competenciaservice.delete(id);
+		return informeService.delete(id);
 	}
 
 	@PostMapping("/create")
-	public int create(@RequestBody Competencia c) {
-		return competenciaservice.create(c);
+	public int create(@RequestBody Informe i) {
+		return informeService.create(i);
 
 	}
 
 	@PutMapping("/update/{id}")
-	public int update(@RequestBody Competencia c, @PathVariable int id) {
-		c.setId_competencias(id);
-
-		return competenciaservice.update(c);
+	public int update(@RequestBody Informe i, @PathVariable int id) {
+		i.setId_informe(id);
+		return informeService.update(i);
 	}
 
 }
