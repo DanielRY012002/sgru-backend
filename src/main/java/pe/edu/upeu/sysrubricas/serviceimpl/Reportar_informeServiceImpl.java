@@ -9,7 +9,6 @@ import pe.edu.upeu.sysrubricas.dao.Reportar_informeDao;
 import pe.edu.upeu.sysrubricas.entity.Reportar_informe;
 import pe.edu.upeu.sysrubricas.service.Reportar_informeService;
 
-
 @Service
 
 public class Reportar_informeServiceImpl implements Reportar_informeService{

@@ -18,7 +18,7 @@ import pe.edu.upeu.sysrubricas.service.Reportar_informeService;
 
 
 @RestController
-@RequestMapping("/reportar")
+@RequestMapping("/reportar") 
 
 public class Reportar_informeController {
 	@Autowired	
