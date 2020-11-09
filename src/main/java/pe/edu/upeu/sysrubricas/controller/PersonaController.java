@@ -1,5 +1,6 @@
 package pe.edu.upeu.sysrubricas.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,41 +14,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.edu.upeu.sysrubricas.entity.Informe;
-import pe.edu.upeu.sysrubricas.service.InformeService;
+import pe.edu.upeu.sysrubricas.entity.Persona;
+import pe.edu.upeu.sysrubricas.service.PersonaService;
+
 @RestController
 @CrossOrigin(origins = "*",allowedHeaders = "*")
-@RequestMapping("/informe")
-
-public class InformeController {
+@RequestMapping("/persona")
+public class PersonaController {
 	@Autowired
-	private InformeService informeService;
+	private PersonaService personaService;
+
+	@PostMapping("/create")
+	public int create(@RequestBody Persona p) {
+		return personaService.create(p);
+
+	}
+	@DeleteMapping("/delete/{id}")
+	public int delete(@PathVariable int id ) {
+		return personaService.delete(id);
+	}
 
 	@GetMapping("/all")
 	public Map<String, Object> readAll() {
-		return informeService.readAll();
+		return personaService.readAll();
 	}
 
 	@GetMapping("/{id}")
 	public Map<String, Object> read(@PathVariable int id) {
-		return informeService.read(id);
+		return personaService.read(id);
 	}
 
-	@DeleteMapping("/delete/{id}")
-	public int delete(@PathVariable int id) {
-		return informeService.delete(id);
+	@GetMapping("/test")
+	public List<Map<String, Object>> list() {
+		return personaService.list();
 	}
-
-	@PostMapping("/create")
-	public int create(@RequestBody Informe i) {
-		return informeService.create(i);
-
-	}
-
 	@PutMapping("/update/{id}")
-	public int update(@RequestBody Informe i, @PathVariable int id) {
-		i.setId_informe(id);
-		return informeService.update(i);
+	public int update(@RequestBody Persona p, @PathVariable int id) {
+		p.setId_persona(id);
+		return personaService.update(p);
 	}
-
 }

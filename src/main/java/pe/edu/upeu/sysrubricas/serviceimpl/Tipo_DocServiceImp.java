@@ -1,25 +1,24 @@
-package pe.edu.upeu.sysrubricas.daoImp;
+package pe.edu.upeu.sysrubricas.serviceimpl;
 
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import pe.edu.upeu.sysrubricas.dao.Tipo_DocDao;
 import pe.edu.upeu.sysrubricas.entity.Tipo_Doc;
+import pe.edu.upeu.sysrubricas.service.Tipo_DocService;
 
-@Repository
-public class Tipo_DocDaoImp implements Tipo_DocDao {
+@Service
+public class Tipo_DocServiceImp implements Tipo_DocService {
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private Tipo_DocDao tipo_DocDao;
 
 	@Override
 	public int create(Tipo_Doc t) {
 		// TODO Auto-generated method stub
-		String sql="call D_CRUD_TIPO_DOC.SPP_INS2_TIPO_DOC(?)";
-		return jdbcTemplate.update(sql,t.getNombre());
+		return tipo_DocDao.create(t);
 	}
 
 	@Override
@@ -31,8 +30,7 @@ public class Tipo_DocDaoImp implements Tipo_DocDao {
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		String sql="delete from tipo_doc where id_tipo_doc=?";
-		return jdbcTemplate.update(sql,id);
+		return tipo_DocDao.delete(id);
 	}
 
 	@Override
@@ -44,8 +42,7 @@ public class Tipo_DocDaoImp implements Tipo_DocDao {
 	@Override
 	public List<Map<String, Object>> readAll() {
 		// TODO Auto-generated method stub
-		String sql = "Select *From tipo_doc where estado=1";
-		return jdbcTemplate.queryForList(sql);
+		return tipo_DocDao.readAll();
 	}
 
 }

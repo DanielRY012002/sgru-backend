@@ -2,8 +2,13 @@ package pe.edu.upeu.sysrubricas.daoImp;
 
 import java.util.Map;
 
+import java.sql.Types;
+import oracle.jdbc.internal.OracleTypes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -43,18 +48,23 @@ public class InformeDaoImp implements InformeDao {
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("D_CRUD_INFORME")
-				.withFunctionName("SPF_READOPC_INFORME");
-		SqlParameterSource in = new MapSqlParameterSource().addValue("id", id);
+		System.out.println(id);
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+		.withCatalogName("D_CRUD_INFORME") //nombre del paquete
+		.withProcedureName("SPP_READOPC_INFORME") //nombre del procedimiento
+		.declareParameters(new SqlOutParameter("cursor_informe", OracleTypes.CURSOR, new ColumnMapRowMapper()), new SqlParameter("id_inf", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("id_inf", id);
 		return simpleJdbcCall.execute(in);
 	}
 
 	@Override
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("D_CRUD_INFORME")
-				.withFunctionName("SPF_READALL_INFORME");
-		return simpleJdbcCall.execute();
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("D_CRUD_INFORME") //nombre del paquete
+				.withProcedureName("SPP_READALL_INFORME") //nombre del procedimiento
+				.declareParameters(new SqlOutParameter("cursor_informes", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+				return simpleJdbcCall.execute();
 	}
 
 }
