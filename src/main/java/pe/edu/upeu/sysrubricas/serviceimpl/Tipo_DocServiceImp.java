@@ -17,31 +17,26 @@ public class Tipo_DocServiceImp implements Tipo_DocService {
 
 	@Override
 	public int create(Tipo_Doc t) {
-		// TODO Auto-generated method stub
 		return tipo_DocDao.create(t);
 	}
 
 	@Override
 	public int update(Tipo_Doc t) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tipo_DocDao.update(t);
 	}
 
 	@Override
 	public int delete(int id) {
-		// TODO Auto-generated method stub
 		return tipo_DocDao.delete(id);
 	}
 
 	@Override
 	public Tipo_Doc read(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return tipo_DocDao.read(id);
 	}
 
 	@Override
 	public List<Map<String, Object>> readAll() {
-		// TODO Auto-generated method stub
 		return tipo_DocDao.readAll();
 	}
 

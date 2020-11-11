@@ -26,35 +26,26 @@ public class PersonaDaoImp implements PersonaDao {
 
 	@Override
 	public int create(Persona p) {
-		// TODO Auto-generated method stub
 		String sql = "declare v_per persona%rowtype; begin v_per.nombres:=?; v_per.apellidos:=?; v_per.sexo:=?; v_per.n_doc:=?; v_per.id_tipo_doc:=?; D_CRUD_PERSONA.SPP_INS_PERSONA(v_per); end;";
-		return jdbcTemplate.update(sql, p.getNombres(), p.getApellidos(), p.getSexo(), p.getN_doc(),
-				p.getId_tipo_doc());
+		return jdbcTemplate.update(sql, p.getNombres(), p.getApellidos(), p.getSexo(), p.getN_doc(),p.getId_tipo_doc());
 	}
 
 	@Override
 	public int update(Persona p) {
-		// TODO Auto-generated method stub
 		String sql = "declare v_per persona%rowtype; begin v_per.id_persona:=?; v_per.nombres:=?; v_per.apellidos:=?; v_per.sexo:=?; v_per.n_doc:=?; v_per.id_tipo_doc:=?; v_per.estado:=1; D_CRUD_PERSONA.SPP_UDP_PERSONA(v_per); end;";
-		return jdbcTemplate.update(sql, p.getId_persona(), p.getNombres(), p.getApellidos(), p.getSexo(), p.getN_doc(),
-				p.getId_tipo_doc());
+		return jdbcTemplate.update(sql, p.getId_persona(), p.getNombres(), p.getApellidos(), p.getSexo(), p.getN_doc(),p.getId_tipo_doc());
 	}
 
 	@Override
 	public int delete(int id) {
-		// TODO Auto-generated method stub
 		String sql="declare v_id persona.id_persona%type; begin v_id:=?; D_CRUD_PERSONA.SPP_ELI_PERSONA(v_id); end;";
-		//String sql = "update persona set estado='0' where id_persona=?";
 		return jdbcTemplate.update(sql, id);
 	}
 
 	@Override
 	public Map<String, Object> read(int id) {
-		// TODO Auto-generated method stub
-		System.out.println(id);
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("D_CRUD_PERSONA") // nombre del paquete
-				.withProcedureName("SPP_READOPC_PERSONA") // nombre del procedimiento
-				.declareParameters(new SqlOutParameter("CURSOR_PERSONA", OracleTypes.CURSOR, new ColumnMapRowMapper()),
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("D_CRUD_PERSONA")
+				.withProcedureName("SPP_READOPC_PERSONA").declareParameters(new SqlOutParameter("CURSOR_PERSONA", OracleTypes.CURSOR, new ColumnMapRowMapper()),
 						new SqlParameter("id_inf", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("ID_PER", id);
 		return simpleJdbcCall.execute(in);
@@ -62,17 +53,13 @@ public class PersonaDaoImp implements PersonaDao {
 
 	@Override
 	public Map<String, Object> readAll() {
-		// TODO Auto-generated method stub
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("D_CRUD_PERSONA") // nombre del paquete
-				.withProcedureName("SPP_READALL_PERSONA") // nombre del procedimiento
-				.declareParameters(
-						new SqlOutParameter("CURSOR_PERSONAS", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("D_CRUD_PERSONA")
+				.withProcedureName("SPP_READALL_PERSONA").declareParameters(new SqlOutParameter("CURSOR_PERSONAS", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
 
 	@Override
 	public List<Map<String, Object>> list() {
-		// TODO Auto-generated method stub
 		String sql = "select * from persona";
 		return jdbcTemplate.queryForList(sql);
 	}

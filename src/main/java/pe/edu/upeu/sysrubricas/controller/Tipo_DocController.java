@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +36,14 @@ public class Tipo_DocController {
 	@DeleteMapping("/delete/{id}")
 	public int delete(@PathVariable int id ) {
 		return tipo_DocService.delete(id);
+	}
+	@PutMapping("/update/{id}")
+	public int update(@RequestBody Tipo_Doc t, @PathVariable int id) {
+		t.setId_tipo_doc(id);
+		return tipo_DocService.update(t);
+	}
+	@GetMapping("/{id}")
+	public Tipo_Doc read(@PathVariable int id) {
+		return tipo_DocService.read(id);
 	}
 }

@@ -13,7 +13,7 @@ class SystemaSgruApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.println(personaDao.list());
+		System.out.println(personaDao.read(1));
 	}
 
 }
