@@ -19,6 +19,8 @@ import oracle.jdbc.OracleTypes;
 import pe.edu.upeu.sysrubricas.dao.Avance_pyDao;
 import pe.edu.upeu.sysrubricas.entity.Avance_py;
 
+@Repository
+
 public class Avance_pyDaoImp implements Avance_pyDao {
 	
 	@Autowired

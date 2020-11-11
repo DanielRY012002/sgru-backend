@@ -17,7 +17,7 @@ import pe.edu.upeu.sysrubricas.entity.Avance_py;
 import pe.edu.upeu.sysrubricas.service.Avance_pyService;
 
 @RestController
-@RequestMapping("/Avance_py")
+@RequestMapping("/avance_py")
 
 public class Avance_pyController {
 	
