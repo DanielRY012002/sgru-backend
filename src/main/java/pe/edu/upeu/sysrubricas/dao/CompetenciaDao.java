@@ -14,5 +14,6 @@ public interface CompetenciaDao {
 	int update(Competencia c);
 	int delete(int id);
 	Map<String,Object> read(int id);//un map es un arrai que trajaba con una llave(string) y un objeto
-	Map<String,Object>readAll();	
+	Map<String,Object>readAll();
+	String prueba(String texto);
 }

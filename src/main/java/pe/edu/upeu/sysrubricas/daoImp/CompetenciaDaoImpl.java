@@ -2,7 +2,7 @@
 
 package pe.edu.upeu.sysrubricas.daoImp;
 
-import java.util.List;
+import java.sql.Types;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +13,8 @@ import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
-import com.sun.xml.internal.ws.wsdl.writer.document.Types;
 
 import oracle.jdbc.OracleTypes;
 import pe.edu.upeu.sysrubricas.dao.CompetenciaDao;
@@ -32,50 +31,60 @@ public class CompetenciaDaoImpl implements CompetenciaDao{
 	@Override
 	public int create(Competencia c) {
 		// TODO Auto-generated method stub
-		return 	 jdbcTemplate.update("call D_CRUD_COMPETENCIAS.SPP_create_COMPETENCIAS(?)", c.getDescripcion());
+		System.out.println(c.getNombre());
+		return jdbcTemplate.update("call D_CRUD_COMPETENCIAS.SPP_INS_COMPETENCIAS(?,?,?,?)", 
+				c.getNombre(),
+				c.getId_tipo_instrumento(),
+				c.getId_linea_pa(),
+				c.getDescripcion());
 	}
-
 	@Override
 	public int update(Competencia c) {
+		System.out.println(c.getId_competencias());
+		System.out.println(c.getNombre());
+		System.out.println(c.getId_tipo_instrumento());
+		System.out.println(c.getId_linea_pa());
+		System.out.println(c.getDescripcion());
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call D_CRUD_COMPETENCIAS.SPP_update_COMPETENCIAS(?,?)", c.getId_competencias(), c.getDescripcion());
+		return jdbcTemplate.update("call D_CRUD_COMPETENCIAS.SPP_UPD_COMPETENCIAS(?,?,?,?,?)",
+							c.getId_competencias(),
+							c.getNombre(), 
+							c.getId_tipo_instrumento(),
+							c.getId_linea_pa(),
+							c.getDescripcion());		
 	}
 	@Override
 	//este metodo permite eliminar una competencia
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call d_crud_competencias.spp_delete_competenicas(?)", id);
+		return jdbcTemplate.update("call D_CRUD_COMPETENCIAS.SPP_DEL_COMPETENCIAS(?)", id);
 	}
 	@Override
+	////metodo que permite buscar por id
 	public Map<String, Object> read(int id) {
-	//	System.out.println(id);
-		//simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-	    //.withCatalogName("d_crud_competencias") //nombre del paquete
-		//.withFunctionName("f_listar") //nombre de la funcion
-		//.declareParameters(new SqlOutParameter("cursor_competencias", OracleTypes.CURSOR, //esto solo para procedimientos
-			//	new ColumnMapRowMapper()), new SqlParameter("id_competencia", Types.INTEGER)); //integer:tipo entero
-		//SqlParameterSource in = new MapSqlParameterSource().addValue("id_competencia", id);
-		
-		 simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-		.withCatalogName("d_crud_competencias") //nombre del paquete
-		.withFunctionName("fn_listar"); //nombre de la funcion
-		SqlParameterSource in = new MapSqlParameterSource().addValue("id", id);	
-		return simpleJdbcCall.execute(in);	
+		System.out.println(id);
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+		.withCatalogName("D_CRUD_COMPETENCIAS") //nombre del paquete
+		.withProcedureName("SPP_BUSCAR_COMPETENCIAS") //nombre del procedimiento
+		.declareParameters(new SqlOutParameter("CURSOR_COMPETENCIAS", OracleTypes.CURSOR, 
+				new ColumnMapRowMapper()), new SqlParameter("IDCOMPETENCIA", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("IDCOMPETENCIA", id);
+		return simpleJdbcCall.execute(in);
 	}
 	@Override
+	//metodo que permite listar los datos de competencias
 	public Map<String, Object> readAll() {
-		// TODO Auto-generated method stub
-//		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-//				.withCatalogName("d_crud_competencias") //nombre del paquete
-//				.withFunctionName("f_listar") //nombre de la funcion
-//				.declareParameters(new SqlOutParameter("cursor_COMPETENCIAS", OracleTypes.CURSOR, 
-//						new ColumnMapRowMapper()));
-//	return simpleJdbcCall.execute();
-		
-		 simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-					.withCatalogName("d_crud_competencias") //nombre del paquete
-					.withFunctionName("fn_listar_todo"); //nombre de la funcion
-					return simpleJdbcCall.execute();
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("D_CRUD_COMPETENCIAS") //nombre del paquete
+				.withProcedureName("SPP_LISTAR_COMPETENCIAS") //nombre del procedimiento
+				.declareParameters(new SqlOutParameter("CURSOR_COMPETENCIA", OracleTypes.CURSOR, 
+						new ColumnMapRowMapper()));
+				return simpleJdbcCall.execute();
+					
 	}
-
+	@Override
+	public String prueba(String texto) {
+		// TODO Auto-generated method stub
+		return texto;
+	}
 }
