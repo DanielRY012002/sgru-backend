@@ -2,50 +2,48 @@
 
 package pe.edu.upeu.sysrubricas.serviceimpl;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.upeu.sysrubricas.dao.CompetenciaDao;
-import pe.edu.upeu.sysrubricas.entity.Competencias;
-import pe.edu.upeu.sysrubricas.service.CompetenciaService;
+import pe.edu.upeu.sysrubricas.dao.RubricasDao;
+import pe.edu.upeu.sysrubricas.entity.Rubricas;
+import pe.edu.upeu.sysrubricas.service.RubricaService;
 
 @Service
-
-public class CompetenciaServiceImpl implements CompetenciaService {
-	
+public class RubricaServiceImpl implements RubricaService {
 	@Autowired
-
-	public CompetenciaDao competenciadao;
-	public int create(Competencias c) {
+	
+	public RubricasDao rubricasdao;
+	
+	public int create(Rubricas r) {
 		// TODO Auto-generated method stub
-		return competenciadao.create(c);
+		return rubricasdao.create(r);
 	}
 
 	@Override
-	public int update(Competencias c) {
+	public int update(Rubricas r) {
 		// TODO Auto-generated method stub
-		return competenciadao.update(c);
+		return rubricasdao.update(r);
 	}
 
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return competenciadao.delete(id);
+		return rubricasdao.delete(id);
 	}
 
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
-		return competenciadao.read(id);
+		return rubricasdao.read(id);
 	}
 
 	@Override
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
-		return competenciadao.readAll();
+		return rubricasdao.readAll();
 	}
 
 }
