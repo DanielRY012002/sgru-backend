@@ -1,23 +1,23 @@
-package pe.edu.upeu.sysrubricas.serviceimpl;
+package pe.edu.upeu.sysrubricas.daoImp;
 
 import java.util.Map;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import pe.edu.upeu.sysrubricas.entity.Plan;
-import pe.edu.upeu.sysrubricas.service.PlanService;
+import pe.edu.upeu.sysrubricas.dao.EstudianteDao;
+import pe.edu.upeu.sysrubricas.entity.Estudiante;
 
-@Service
-public class PlanServiceImpl implements PlanService{
+@Repository
+public class EstudianteDaoImpl implements EstudianteDao{
 
 	@Override
-	public int create(Plan p) {
+	public int create(Estudiante e) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(Plan p) {
+	public int update(Estudiante e) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

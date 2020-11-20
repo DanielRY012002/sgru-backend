@@ -2,9 +2,12 @@ package pe.edu.upeu.sysrubricas.daoImp;
 
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import pe.edu.upeu.sysrubricas.dao.Estado_civilDao;
 import pe.edu.upeu.sysrubricas.entity.Estado_civil;
 
+@Repository
 public class Estado_civilDaoImpl implements Estado_civilDao{
 
 	@Override

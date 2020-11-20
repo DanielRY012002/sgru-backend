@@ -4,20 +4,20 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import pe.edu.upeu.sysrubricas.entity.Plan;
-import pe.edu.upeu.sysrubricas.service.PlanService;
+import pe.edu.upeu.sysrubricas.entity.Estudiante;
+import pe.edu.upeu.sysrubricas.service.EstudianteService;
 
 @Service
-public class PlanServiceImpl implements PlanService{
+public class EstudianteServiceImpl implements EstudianteService{
 
 	@Override
-	public int create(Plan p) {
+	public int create(Estudiante e) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(Plan p) {
+	public int update(Estudiante e) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

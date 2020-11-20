@@ -2,9 +2,12 @@ package pe.edu.upeu.sysrubricas.serviceimpl;
 
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import pe.edu.upeu.sysrubricas.entity.Estado_civil;
 import pe.edu.upeu.sysrubricas.service.Estado_civilService;
 
+@Service
 public class Estado_civilServiceImpl implements Estado_civilService{
 
 	@Override
