@@ -1,7 +1,7 @@
 package pe.edu.upeu.sysrubricas.entity;
 
 public class Curso {
-	private int  id_curso;
+	private int  curso_id;
 	private String nombre;
 	private int cr;
 	private int ht;
@@ -10,20 +10,20 @@ public class Curso {
 	public Curso() {
 		super();
 	}
-	public Curso(int id_curso, String nombre, int cr, int ht, int hp, String estado) {
+	public Curso(int curso_id, String nombre, int cr, int ht, int hp, String estado) {
 		super();
-		this.id_curso = id_curso;
+		this.curso_id = curso_id;
 		this.nombre = nombre;
 		this.cr = cr;
 		this.ht = ht;
 		this.hp = hp;
 		this.estado = estado;
 	}
-	public int getId_curso() {
-		return id_curso;
+	public int getCurso_id() {
+		return curso_id;
 	}
-	public void setId_curso(int id_curso) {
-		this.id_curso = id_curso;
+	public void setCurso_id(int curso_id) {
+		this.curso_id = curso_id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -55,5 +55,6 @@ public class Curso {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
 		
 }

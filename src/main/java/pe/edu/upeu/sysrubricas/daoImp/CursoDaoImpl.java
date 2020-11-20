@@ -32,7 +32,7 @@ public class CursoDaoImpl implements CursoDao{
 	public int update(Curso c) {
 		System.out.println(c.getNombre());
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call D_CRUD_CURSO.SPP_UPD_CURSO(?,?,?,?,?)", c.getId_curso(), c.getNombre(), c.getCr(), c.getHt(), c.getHp());
+		return jdbcTemplate.update("call D_CRUD_CURSO.SPP_UPD_CURSO(?,?,?,?,?)", c.getCurso_id(), c.getNombre(), c.getCr(), c.getHt(), c.getHp());
 	}
 	@Override
 	//este metodo permite eliminar una competencia

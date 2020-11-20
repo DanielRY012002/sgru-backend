@@ -14,22 +14,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.upeu.sysrubricas.entity.Curso;
+import pe.edu.upeu.sysrubricas.entity.Plan;
 import pe.edu.upeu.sysrubricas.service.CursoService;
+import pe.edu.upeu.sysrubricas.service.PlanService;
 
 @RestController
 @CrossOrigin(origins="*", allowedHeaders="*")
-@RequestMapping("/cursos")
-public class CursoController {
+@RequestMapping("/planes")
+public class PlanController {
 	@Autowired	
-	private CursoService cursoService;
+	private PlanService planService;
 	@GetMapping("/all")
 	public Map<String, Object> readAll(){
-		return cursoService.readAll();
+		return planService.readAll();
 	}
 	@GetMapping("/{id}")
 	public Map<String, Object> read(@PathVariable int id ) {
 		try {
-			 return cursoService.read(id);
+			 return planService.read(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("error");
@@ -38,27 +40,15 @@ public class CursoController {
 	}
 	@DeleteMapping("/delete/{id}")
 	public int delete(@PathVariable int id) {
-		return cursoService.delete(id);
+		return planService.delete(id);
 	}	
 	@PostMapping("/add")
-	public int create(@RequestBody Curso c) {
-		return cursoService.create(c);		
+	public int create(@RequestBody Plan p) {
+		return planService.create(p);		
 	}
 	@PutMapping("/update/{id}")
-    public int update(@RequestBody Curso c,@PathVariable int id) {
-		c.setCurso_id(id);
-		return cursoService.update(c);
+    public int update(@RequestBody Plan p,@PathVariable int id) {
+		p.setPlan_id(id);
+		return planService.update(p);
 	}
-	//@PutMapping("/update/{id}")
-		//public String edit(@RequestBody Curso r, @PathVariable int id) {
-			//**Map<String, Object> map = rolService.read(id);
-			//**System.out.println(map);
-			//Curso curso = new Curso();
-			//curso.setNombre(r.getNombre());
-			//curso.setCr(r.getCr());
-			//curso.setHt(r.getHt());
-			//curso.setHp(r.getHp());
-			//cursoService.update(r);
-			//return "hola";
-		//}
 }
