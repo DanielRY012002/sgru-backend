@@ -1,7 +1,6 @@
 package pe.edu.upeu.sysrubricas.daoImp;
 import java.sql.Types;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ColumnMapRowMapper;
